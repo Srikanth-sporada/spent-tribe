@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "27609000000011196",
+      "name": "spend-tribe",
+      "domain": {
+        "id": "50037078867",
+        "name": "spend-tribe-60061689041.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60061689041",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
