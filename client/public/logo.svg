@@ -1,0 +1,59 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="mainGradient" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F46E5"/> <!-- Indigo-600 -->
+      <stop offset="50%" stop-color="#7C3AED"/> <!-- Violet-600 -->
+      <stop offset="100%" stop-color="#2563EB"/> <!-- Blue-600 -->
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="160" y1="300" x2="352" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8"/> <!-- Sky-400 -->
+      <stop offset="100%" stop-color="#2DD4BF"/> <!-- Teal-400 -->
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Shape: Rounded Super-ellipse (App Icon Style) -->
+  <rect x="32" y="32" width="448" height="448" rx="128" fill="#0F172A"/>
+  
+  <!-- Subtle Background Glow -->
+  <circle cx="256" cy="128" r="200" fill="url(#mainGradient)" fill-opacity="0.2" filter="url(#glow)"/>
+
+  <!-- The "Flowing Shelter": A ribbon turning from a house roof into a wallet pocket -->
+  <path d="M128 220 
+           L256 100 
+           L384 220 
+           V360 
+           C384 395 355 424 320 424 
+           H192 
+           C157 424 128 395 128 360 
+           Z" 
+        fill="url(#mainGradient)" />
+        
+  <!-- The "Wallet Flap" Overlay (creates the pocket depth) -->
+  <path d="M128 280 
+           C128 280 
+           200 320 
+           256 320 
+           C312 320 
+           384 280 
+           384 280 
+           V360 
+           C384 395 355 424 320 424 
+           H192 
+           C157 424 128 395 128 360 
+           Z" 
+        fill="#000000" fill-opacity="0.3"/>
+
+  <!-- The "Transaction" Accent: A floating, glowing card/coin sliding in -->
+  <rect x="176" y="240" width="160" height="100" rx="20" fill="url(#accentGradient)" stroke="white" stroke-width="6"/>
+  
+  <!-- Stylized Roof Highlight -->
+  <path d="M140 220 L256 112 L372 220" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.9"/>
+  
+  <!-- Final Gloss Shine -->
+  <ellipse cx="256" cy="64" rx="200" ry="80" fill="white" fill-opacity="0.05"/>
+</svg>

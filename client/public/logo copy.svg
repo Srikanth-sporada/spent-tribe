@@ -1,0 +1,40 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions for Gradients -->
+  <defs>
+    <linearGradient id="houseGradient" x1="256" y1="64" x2="256" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6"/> <!-- Blue-500 -->
+      <stop offset="100%" stop-color="#0F1C36"/> <!-- Dark Navy -->
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="160" y1="280" x2="352" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/> <!-- Emerald-400 -->
+      <stop offset="100%" stop-color="#059669"/> <!-- Emerald-600 -->
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blur"/>
+      <feOffset in="blur" dx="0" dy="10" result="offsetBlur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.3" result="offsetColor"/>
+      <feComposite in="offsetColor" in2="offsetBlur" operator="in" result="offsetBlur"/>
+      <feMerge>
+        <feMergeNode in="offsetBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Main House Body with Soft Corners and Gradient -->
+  <path d="M256 64L80 200C71.1634 206.84 64 218.163 64 230V416C64 433.673 78.3269 448 96 448H416C433.673 448 448 433.673 448 416V230C448 218.163 440.837 206.84 432 200L256 64Z" fill="url(#houseGradient)" filter="url(#softShadow)"/>
+
+  <!-- The "Wallet Pocket" Cutout/Overlay -->
+  <!-- A darker semi-transparent path to simulate the pocket depth -->
+  <path d="M96 448V256C96 238.327 110.327 224 128 224H384C401.673 224 416 238.327 416 256V448H96Z" fill="#0F1C36" fill-opacity="0.4"/>
+
+  <!-- The Credit Card / Money Accent sliding out -->
+  <rect x="144" y="260" width="224" height="140" rx="20" fill="url(#cardGradient)" transform="rotate(-5 256 330)" stroke="white" stroke-width="4" stroke-opacity="0.2"/>
+
+  <!-- Detail: Dollar Sign on Card -->
+  <circle cx="256" cy="330" r="36" fill="white" fill-opacity="0.2" transform="rotate(-5 256 330)"/>
+  <path d="M256 312V348M256 312C264 312 270 316 270 322C270 328 262 328 256 328C250 328 242 328 242 334C242 340 248 344 256 344M256 344V348" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-5 256 330)"/>
+
+  <!-- Roof Highlight for 3D feel -->
+  <path d="M256 64L432 200L256 160L80 200L256 64Z" fill="white" fill-opacity="0.1"/>
+</svg>
