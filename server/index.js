@@ -17,23 +17,41 @@ app.use((req, res, next) => {
     next();
 });
 
-// Manual CORS implementation to ensure headers are ALWAYS sent
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, Origin, X-Requested-With, Accept");
+// CORS Configuration
+const allowedOrigins = [
+    'https://spent-tribe.onslate.in',
+    'https://www.spent-tribe.onslate.in',
+    'https://spent-tribe.vercel.app',
+    'https://www.spent-tribe.vercel.app',
+    'https://stb.development.catalystappsail.in'
+];
 
-    // Handle preflight requests directly
-    if (req.method === 'OPTIONS') {
-        console.log(`[CORS] Handling OPTIONS request for ${req.url}`);
-        return res.sendStatus(200);
-    }
+const corsOptions = {
+    origin: function (origin, callback) {
+        console.log('Checking origin:', origin); // Debug log
 
-    next();
-});
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) {
+            console.log('Allowed: No origin');
+            return callback(null, true);
+        }
 
-// app.use(cors(corsOptions));
-// app.options(/.*/, cors(corsOptions)); // Enable pre-flight for all routes
+        // Check if origin is allowed or if it's localhost
+        if (allowedOrigins.indexOf(origin) !== -1 || /^http:\/\/localhost:\d+$/.test(origin)) {
+            console.log('Allowed:', origin);
+            callback(null, true);
+        } else {
+            console.error('Blocked by CORS:', origin);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions)); // Enable pre-flight for all routes
 app.use(express.json());
 
 app.get('/', (req, res) => {
