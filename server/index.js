@@ -9,9 +9,31 @@ db.verifyConnection();
 dotenv.config();
 
 const app = express();
-const PORT = process.env.X_ZOHO_CATALYST_LISTEN_PORT;
+const PORT = process.env.X_ZOHO_CATALYST_LISTEN_PORT || process.env.PORT || 5000;
 
-app.use(cors());
+// Request Logging Middleware
+app.use((req, res, next) => {
+    console.log(`[REQUEST] ${req.method} ${req.url} Origin: ${req.headers.origin}`);
+    next();
+});
+
+// Manual CORS implementation to ensure headers are ALWAYS sent
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, Origin, X-Requested-With, Accept");
+
+    // Handle preflight requests directly
+    if (req.method === 'OPTIONS') {
+        console.log(`[CORS] Handling OPTIONS request for ${req.url}`);
+        return res.sendStatus(200);
+    }
+
+    next();
+});
+
+// app.use(cors(corsOptions));
+// app.options(/.*/, cors(corsOptions)); // Enable pre-flight for all routes
 app.use(express.json());
 
 app.get('/', (req, res) => {
