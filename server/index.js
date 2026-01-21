@@ -23,7 +23,8 @@ const allowedOrigins = [
     'https://www.spent-tribe.onslate.in',
     'https://spent-tribe.vercel.app',
     'https://www.spent-tribe.vercel.app',
-    'https://stb.development.catalystappsail.in'
+    'https://stb.development.catalystappsail.in',
+    'https://localhost',
 ];
 
 const corsOptions = {
