@@ -25,6 +25,7 @@ const allowedOrigins = [
     'https://www.spent-tribe.vercel.app',
     'https://stb.development.catalystappsail.in',
     'http://localhost',
+    'https://localhost',
 ];
 
 const corsOptions = {
